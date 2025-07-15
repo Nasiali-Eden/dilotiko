@@ -1666,7 +1666,56 @@
     <script src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
-    
+        <script>
+        // revolution slider
+        (function ($) { })(jQuery);
+        var revapi;
+        revapi = jQuery('#revolution-slider').revolution({
+            delay: 5000,
+            startwidth: 1120,
+            startheight: 500,
+            hideThumbs: 10,
+            fullWidth: "on",
+            fullScreen: "on",
+            fullScreenOffsetContainer: "",
+            touchenabled: "on",
+            navigationType: "none",
+            dottedOverlay: ""
+        });
+    </script>
+    <script>
+        // Add smooth scroll animation when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Add parallax effect to floating particles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = 0.5 + (index * 0.1);
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
 
 
 </body>
